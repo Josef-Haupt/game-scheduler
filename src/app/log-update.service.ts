@@ -8,13 +8,12 @@ export class LogUpdateService {
     updates.available.subscribe(event => {
       console.log('current version is', event.current);
       console.log('available version is', event.available);
-
-      alert("Updating site ...");
-      updates.activateUpdate().then(() => document.location.reload());
     });
     updates.activated.subscribe(event => {
       console.log('old version was', event.previous);
       console.log('new version is', event.current);
     });
+    alert("Updating site ...");
+    updates.activateUpdate().then(() => document.location.reload());
   }
 }

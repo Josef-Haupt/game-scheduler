@@ -54,14 +54,15 @@ export function unique(arr: any[][] | Generator<any[], void, unknown>) {
     const hashSet = new Map;
 
     for (const comb of arr) {
-      comb.sort();
-      if (!hashSet.has(comb.toString())) {
-        hashSet.set(comb.toString(), comb);
-      }
+        comb.sort();
+
+        if (!hashSet.has(comb.toString())) {
+            hashSet.set(comb.toString(), comb);
+        }
     }
 
     return [...hashSet.values()];
-  }
+}
 
 export function uniqueCombinations(pool: any[], r: number) {
     return unique(combinations(pool, r));
