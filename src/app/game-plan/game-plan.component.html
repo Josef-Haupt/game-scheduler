@@ -1,0 +1,54 @@
+<button mat-raised-button [routerLink]="['..']" color="primary">Zurück</button>
+<mat-accordion multi="true">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Teams ({{teams.length}})
+            </mat-panel-title>
+            <mat-panel-description>
+                Zeigt alle Teamkombinationen.
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ul class="unmarked-list">
+            <li *ngFor="let team of teams">
+                <span class="name-tag" [ngStyle]="{'background-color': color(person)}" *ngFor="let person of team">
+                    {{person}}
+                </span>
+            </li>
+        </ul>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Matches pro Person
+            </mat-panel-title>
+            <mat-panel-description>
+                Zeigt die Anzahl der Spiele pro Person
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <table id="match-count-table">
+            <tr *ngFor="let entry of playerMatches">
+                <td><span class="name-tag" [ngStyle]="{'background-color': color(entry[0])}">{{entry[0]}}</span></td>
+                <td>{{entry[1]}}</td>
+            </tr>
+        </table>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Matches ({{matches.length}})
+            </mat-panel-title>
+            <mat-panel-description>
+                Zeigt den Spielplan
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div *ngFor="let match of matches;" class="row">
+            <span class="name-tag" [ngStyle]="{'background-color': color(person)}"
+                *ngFor="let person of match[0]">{{person}}</span>
+            <span class="vs-tag">VS</span>
+
+            <span class="name-tag" [ngStyle]="{'background-color': color(person)}"
+                *ngFor="let person of match[1]">{{person}}</span>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

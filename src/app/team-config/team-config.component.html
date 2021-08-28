@@ -1,0 +1,43 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Team-Einstellungen</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-form-field class="example-full-width" style="display: block;">
+      <mat-label>Teamgröße</mat-label>
+      <input matInput required placeholder="Teamgröße" [(ngModel)]="teamsize">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" style="display: block;">
+      <mat-label>min. Spiele pro Person</mat-label>
+      <input matInput required placeholder="Minimal Anzahl an Spielen pro Person" [(ngModel)]="minGames">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <h3 style="padding-top: 1.34375em;">Person hinzufügen</h3>
+    <mat-form-field class="example-full-width">
+      <mat-label>Name</mat-label>
+      <input matInput required placeholder="Name" #newname>
+    </mat-form-field>
+
+    <button mat-stroked-button (click)="addPerson(newname.value)">Hinzufügen</button>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="calcTeams()" color="primary">Teams erstellen</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card style="margin-top: 1.34375em;" *ngIf="persons && persons.length">
+  <mat-card-header>
+    <mat-card-title>Personen</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let person of persons; index as i">
+        <mat-icon (click)="removeAt(i)" aria-label="Entfernen" style="cursor: pointer; margin-right: 5px;">
+          delete
+        </mat-icon>
+        <span class="name-tag" [ngStyle]="{'background-color': color(i)}">{{person}}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

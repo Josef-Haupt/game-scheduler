@@ -1,0 +1,38 @@
+.unmarked-list {
+    list-style: none;
+
+    li:not(:last-child) {
+        margin-bottom: 10px;
+    }
+}
+
+.name-tag:not(:last-child) {
+    margin-right: 3px;
+}
+
+#match-count-table {
+    tr {
+        td {
+            padding-top: 10px;
+            padding-right: 3px;
+        }
+    }
+}
+
+.row {
+    padding-bottom: 10px;
+    display: flex;
+    flex-flow: row wrap;
+    &:not(:last-child) {
+        border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+    }
+
+    &:not(:first-of-type) {
+        padding-top: 10px;
+    }
+}
+
+.vs-tag {
+    font-weight: 700;
+    padding: 4px 5px;
+}
