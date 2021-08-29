@@ -22,12 +22,14 @@ import { TeamConfigComponent } from './team-config/team-config.component';
 import { GamePlanComponent } from './game-plan/game-plan.component';
 import { LocalStorageService } from './local-storage.service';
 import { CommonModule } from '@angular/common';
+import { ResultComponent } from './result/result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TeamConfigComponent,
-    GamePlanComponent
+    GamePlanComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,

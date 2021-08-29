@@ -42,7 +42,9 @@
                 Zeigt den Spielplan
             </mat-panel-description>
         </mat-expansion-panel-header>
-        <div *ngFor="let match of matches;" class="row">
+        <div *ngFor="let match of matches; index as i" class="row">
+            <input type="number" min="0" [(ngModel)]="matchresults[i][0]">
+            <input type="number" min="0" [(ngModel)]="matchresults[i][1]">
             <span class="name-tag" [ngStyle]="{'background-color': color(person)}"
                 *ngFor="let person of match[0]">{{person}}</span>
             <span class="vs-tag">VS</span>
@@ -50,5 +52,8 @@
             <span class="name-tag" [ngStyle]="{'background-color': color(person)}"
                 *ngFor="let person of match[1]">{{person}}</span>
         </div>
+        <mat-action-row>
+          <button mat-raised-button color="primary" (click)="calcResult()">Ergebnisse</button>
+        </mat-action-row>
     </mat-expansion-panel>
 </mat-accordion>

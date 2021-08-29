@@ -16,10 +16,10 @@
     <h3 style="padding-top: 1.34375em;">Person hinzufügen</h3>
     <mat-form-field class="example-full-width">
       <mat-label>Name</mat-label>
-      <input matInput required placeholder="Name" #newname>
+      <input matInput required placeholder="Name" #newname (keyup)="onKey($event, newname)">
     </mat-form-field>
 
-    <button mat-stroked-button (click)="addPerson(newname.value)">Hinzufügen</button>
+    <button mat-stroked-button (click)="addPerson(newname)">Hinzufügen</button>
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button (click)="calcTeams()" color="primary">Teams erstellen</button>

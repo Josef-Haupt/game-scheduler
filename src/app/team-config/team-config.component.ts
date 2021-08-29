@@ -10,19 +10,9 @@ import { GameService } from '../game.service';
   styleUrls: ['./team-config.component.scss']
 })
 export class TeamConfigComponent implements OnInit {
-  persons: any[] = [
-    // 'robert',
-    // 'nick',
-    // 'peter',
-    // 'ludwig',
-    // 'christian',
-    // 'lisa',
-    // 'max',
-    // 'sandra',
-    // 'tina'
-  ];
-  teamsize = 3;
-  minGames = 8;
+  persons: any[];
+  teamsize;
+  minGames;
 
   constructor(
     private snackbar: MatSnackBar,
@@ -31,24 +21,41 @@ export class TeamConfigComponent implements OnInit {
   ) {
     this.teamsize = this.gameService.teamSize ? this.gameService.teamSize : 3;
     this.minGames = this.gameService.minGames ? this.gameService.minGames : 8;
-    this.persons = this.gameService.persons ?? [];
+    this.persons = this.gameService.persons && this.gameService.persons.length ? this.gameService.persons : [
+      // 'robert',
+      // 'nick',
+      // 'peter',
+      // 'ludwig',
+      // 'christian',
+      // 'lisa',
+      // 'max',
+      // 'sandra',
+      // 'tina'
+    ];
   }
 
   removeAt(index: number) {
     this.persons.splice(index, 1);
   }
 
-  addPerson(name: string) {
-    if (!name.trim()) {
+  addPerson(input: HTMLInputElement) {
+    if (!input.value.trim()) {
       this.snackbar.open("Name darf nicht leer sein!");
       return;
     }
 
-    this.persons.push(name.trim());
+    this.persons.push(input.value.trim());
+    input.value = "";
   }
 
   color(index: number) {
     return makeLightColor(index);
+  }
+
+  onKey(event: KeyboardEvent, input: HTMLInputElement) {
+    if (event.key == "Enter") {
+      this.addPerson(input);
+    }
   }
 
   calcTeams() {

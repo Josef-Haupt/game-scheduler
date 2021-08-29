@@ -1,0 +1,34 @@
+
+.row {
+  padding-bottom: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  &:not(:last-child) {
+      border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+  }
+
+  &:not(:first-of-type) {
+      padding-top: 10px;
+  }
+
+  input {
+    width: 50px;
+    margin-right: 5px;
+  }
+}
+
+.score-tag {
+  font-weight: 700;
+  padding: 4px 5px;
+}
+
+.vs-tag {
+  font-weight: 700;
+  padding: 4px 5px;
+}
+
+
+.name-tag:not(:last-child) {
+  margin-right: 3px;
+}
+

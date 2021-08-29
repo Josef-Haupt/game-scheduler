@@ -65,5 +65,6 @@ export function unique(arr: any[][] | Generator<any[], void, unknown>) {
 }
 
 export function uniqueCombinations(pool: any[], r: number) {
-    return unique(combinations(pool, r));
+    // return unique(combinations(pool, r));
+    return combinations(pool, r);
 }

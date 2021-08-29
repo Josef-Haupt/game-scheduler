@@ -1,0 +1,40 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Ergebnisse</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <table>
+      <tr>
+        <th>Spieler</th>
+        <th>Punkte (Siege)</th>
+        <th>Durchschn. Punkte</th>
+        <th>Siegesrate</th>
+      </tr>
+      <tr *ngFor="let result of playerResults; index as i;">
+        <td>
+          <span class="name-tag" [ngStyle]="{'background-color': color(i)}">{{gameService.persons[i]}}</span>
+        </td>
+        <td>{{result}}</td>
+        <td>{{stats[i].meanScore}}</td>
+        <td>{{stats[i].winRate}}</td>
+      </tr>
+    </table>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Gespielte Matches</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div *ngFor="let result of results; index as i" class="row">
+      <span class="score-tag">{{result.scoreTeam1}} - {{result.scoreTeam2}}</span>
+
+      <span class="name-tag" [ngStyle]="{'background-color': color(person)}"
+        *ngFor="let person of result.team1">{{person}}</span>
+      <span class="vs-tag">VS</span>
+
+      <span class="name-tag" [ngStyle]="{'background-color': color(person)}"
+        *ngFor="let person of result.team2">{{person}}</span>
+    </div>
+  </mat-card-content>
+</mat-card>

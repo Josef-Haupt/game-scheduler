@@ -30,6 +30,11 @@
     &:not(:first-of-type) {
         padding-top: 10px;
     }
+
+    input {
+      width: 50px;
+      margin-right: 5px;
+    }
 }
 
 .vs-tag {
