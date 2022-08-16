@@ -80,19 +80,19 @@ export class GamePlanComponent implements OnInit {
         playedMatches.push(match);
 
         for (const [p1, p2] of uniqueCombinations(match[0], 2)) {
-          playedwithMatrix[p1][p2] += 1;
-          playedwithMatrix[p2][p1] += 1;
+          playedwithMatrix[p1][p2]++;
+          playedwithMatrix[p2][p1]++;
         }
 
         for (const [p1, p2] of uniqueCombinations(match[1], 2)) {
-          playedwithMatrix[p1][p2] += 1;
-          playedwithMatrix[p2][p1] += 1;
+          playedwithMatrix[p1][p2]++;
+          playedwithMatrix[p2][p1]++;
         }
 
         for (const person of match[0]) {
           for (const otherPerson of match[1]) {
-            playedagainstMatrix[person][otherPerson] += 1;
-            playedagainstMatrix[otherPerson][person] += 1;
+            playedagainstMatrix[person][otherPerson]++;
+            playedagainstMatrix[otherPerson][person]++;
           }
         }
       }
@@ -118,6 +118,28 @@ export class GamePlanComponent implements OnInit {
     this.matchresults = [];
 
     this.matches.forEach(_ => this.matchresults.push(["", ""]));
+
+    /* -------- DEBUG ------- */
+
+    const matchUps: {[key: string]: number} = {}
+
+    for (const [team1, team2] of this.matches) {
+      if (team1.toString() in matchUps) {
+        matchUps[team1.toString()]++;
+      }
+      else {
+        matchUps[team1.toString()] = 1;
+      }
+
+      if (team2.toString() in matchUps) {
+        matchUps[team2.toString()]++;
+      }
+      else {
+        matchUps[team2.toString()] = 1;
+      }
+    }
+
+    console.log(matchUps);
   }
 
   public calcResult() {
